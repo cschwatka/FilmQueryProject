@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.entities;
 
+
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +41,6 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
-//		this.actors = setActors();
 	}
 
 	public Film() {
@@ -134,13 +134,16 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 	
+
+	
+
 	public List<Actor> getActors() {
 		return actors;
 	}
-	
-//	public void setActors(List<Actor> actors) {
-//		this.actors = actors;
-//	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
 
 	@Override
 	public int hashCode() {
