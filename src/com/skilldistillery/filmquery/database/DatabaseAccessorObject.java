@@ -43,17 +43,17 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			if (filmResult.next()) {
 				film = new Film();
 
-				film.setId(filmResult.getInt(1));
-				film.setTitle(filmResult.getString(2));
-				film.setDescription(filmResult.getString(3));
-				film.setReleaseYear(filmResult.getInt(4));
-				film.setLanguageId(filmResult.getInt(5));
-				film.setRentalDuration(filmResult.getInt(6));
-				film.setRentalRate(filmResult.getDouble(7));
-				film.setLength(filmResult.getInt(8));
-				film.setReplacementCost(filmResult.getDouble(9));
-				film.setRating(filmResult.getString(10));
-				film.setSpecialFeatures(filmResult.getString(11));
+				film.setId(filmResult.getInt("id"));
+				film.setTitle(filmResult.getString("title"));
+				film.setDescription(filmResult.getString("description"));
+				film.setReleaseYear(filmResult.getInt("release_year"));
+				film.setLanguageId(filmResult.getInt("language_id"));
+				film.setRentalDuration(filmResult.getInt("rental_duration"));
+				film.setRentalRate(filmResult.getDouble("rental_rate"));
+				film.setLength(filmResult.getInt("length"));
+				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+				film.setRating(filmResult.getString("rating"));
+				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setActors(findActorsByFilmId(filmId));
 
 			}
