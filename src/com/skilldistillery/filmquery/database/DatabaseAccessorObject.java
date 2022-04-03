@@ -67,6 +67,51 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
+	public List<Film> findFilmByKeyword(String filmKeyword) {
+		List<Film> films = new ArrayList<>();
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+
+			String sqltxt;
+			sqltxt = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sqltxt);
+			stmt.setString(1, "%" + filmKeyword + "%"); // bind variable
+			stmt.setString(2, "%" + filmKeyword + "%"); // bind variable
+			ResultSet filmResult = stmt.executeQuery();
+
+			while (filmResult.next()) {
+
+				int filmId = filmResult.getInt("id");
+				String title = filmResult.getString("title");
+				String description = filmResult.getString("description");
+				int releaseYear = filmResult.getInt("release_year");
+				int languageId = filmResult.getInt("language_id");
+				int rentalDuration = filmResult.getInt("rental_duration");
+				double rentalRate = filmResult.getDouble("rental_rate");
+				int length = filmResult.getInt("length");
+				double replacementCost = filmResult.getDouble("replacement_cost");
+				String rating = filmResult.getString("rating");
+				String specialFeatures = filmResult.getString("special_features");
+				List<Actor> actors = findActorsByFilmId(Integer.parseInt("id")); // test
+
+				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration, rentalRate,
+						length, replacementCost, rating, specialFeatures,actors);
+				
+				films.add(film);
+
+
+			}
+			filmResult.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return films;
+	}
+
+	@Override
 	public Actor findActorById(int actorId) {
 
 		Actor actor = null;

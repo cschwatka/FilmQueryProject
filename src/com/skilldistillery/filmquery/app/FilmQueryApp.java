@@ -53,6 +53,7 @@ public class FilmQueryApp {
 
 		do {
 
+			System.out.println();
 			System.out.println("***************  MENU  **************");
 			System.out.println("********** chose an option **********");
 			System.out.println();
@@ -70,17 +71,36 @@ public class FilmQueryApp {
 						System.out.println("Enter a film id: ");
 						Film film;
 						film = db.findFilmById(input.nextInt());
-						if (film != null) {
-						System.out.println(film);
-						} else 
-							System.out.println("Film not found. Try again.\n");
 						input.nextLine(); // flush
+						if (film != null) {
+							System.out.println(film.getSimple());
+						} else {
+							System.out.println("Film not found. Try again.\n");
+							input.nextLine(); // flush
+						}
 					} catch (InputMismatchException e) {
 						System.out.println("You must enter a number. ~Try again.\n");
 					}
 					break;
 				case 2:
-					System.out.println("Enter a search keyword (eg. bama) TODO ");
+					try {
+						System.out.println("Enter a search keyword (eg. bama) TODO ");
+						input.nextLine(); // flush
+						List<Film> films;
+						films = db.findFilmByKeyword(input.nextLine());
+						if (!films.isEmpty()) {
+
+							for (Film f : films) {
+								System.out.println(f.getSimple());
+							}
+
+						} else {
+							System.out.println("Film(s) not found. Try again.\n");
+							
+						}
+					} catch (InputMismatchException e) {
+						System.out.println("You must enter a number. ~Try again.\n");
+					}
 					break;
 				case 3:
 					System.out.println("Goodbye\n");
@@ -92,7 +112,7 @@ public class FilmQueryApp {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("You must enter a number. Try again.\n");
-				input.nextLine();  // flush
+				input.nextLine(); // flush
 			}
 		} while (choice != 3);
 
