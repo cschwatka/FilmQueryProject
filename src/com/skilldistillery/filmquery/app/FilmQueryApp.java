@@ -16,6 +16,7 @@ public class FilmQueryApp {
     FilmQueryApp app = new FilmQueryApp();
     app.test(); // comment this out 
 //    app.launch(); //uncomment this one
+    //test GIT
   }
 
   private void test() {
