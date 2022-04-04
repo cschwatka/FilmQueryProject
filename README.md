@@ -22,4 +22,6 @@ When a film is displayed, the list of actors in its cast is displayed along with
 
 ## Lessons Learned ##
 
+I rebelled several weeks ago and moved SD to a Dropbox directory so I could keep all of the drill work up to date on my desktop workstation as well as my laptop. I didn't do much with the laptop until this homework, so there was a fair amount of local setup work to do (was good practice). There's a new Eclipse EE version though which caused Maven dependency issues. I resolved it with a Maven refresh/force. Both systems are working well and I forced myself to work from the laptop all day today to get used to the slightly different workflow.
+
 I apparently still don't always know when the Scanner needs to be flushed (I'm glad the Scanner won't be used much more after this project). I also had some issues with the menu even though we've made like 10 menus thus far. I'm "trying to catch" inputMismatch with the try/catch and accounting for numbers outside the menu range with default in the switch. It works now, but I had to play with the logic more that I would have liked. I also had some issues early on getting the language and actors to populate by of new methods called by others, but after stepping away from it for a bit I realized it could be done simply by calling new simpler methods (especially the language name which is a simple 1:1 query).
