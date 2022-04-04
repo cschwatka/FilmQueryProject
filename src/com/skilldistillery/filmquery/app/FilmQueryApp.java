@@ -95,7 +95,7 @@ public class FilmQueryApp {
 							}
 
 						} else {
-							System.out.println("Film(s) not found. Try again.\n");
+							System.out.println("No films found matching that keyword. Try again.\n");
 							
 						}
 					} catch (InputMismatchException e) {

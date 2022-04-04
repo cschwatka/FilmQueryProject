@@ -57,8 +57,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setActors(findActorsByFilmId(filmId));
 				film.setLanguageName(findLanguageById(film.getLanguageId()));
 						
-						
-				
 
 			}
 			filmResult.close();
