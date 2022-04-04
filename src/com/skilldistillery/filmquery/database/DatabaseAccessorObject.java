@@ -55,6 +55,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setActors(findActorsByFilmId(filmId));
+				film.setLanguageName(findLanguageById(film.getLanguageId()));
+						
+						
+				
 
 			}
 			filmResult.close();
@@ -93,9 +97,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				double replacementCost = filmResult.getDouble("replacement_cost");
 				String rating = filmResult.getString("rating");
 				String specialFeatures = filmResult.getString("special_features");
-				List<Actor> actors = findActorsByFilmId(Integer.parseInt("id")); // test
+				List<Actor> actors = findActorsByFilmId(filmId); // test
+				String languageName = findLanguageById(languageId);
 
-				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration, rentalRate,
+				Film film = new Film(filmId, title, description, releaseYear, languageId, languageName, rentalDuration, rentalRate,
 						length, replacementCost, rating, specialFeatures,actors);
 				
 				films.add(film);
@@ -141,6 +146,39 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return actor;
 	}
+	
+	@Override
+	public String findLanguageById(int languageId) {
+		String languageName = "";
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+
+			String sqltxt;
+			sqltxt = "SELECT * FROM language WHERE id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sqltxt);
+			stmt.setInt(1, languageId); // bind variable if needed
+			ResultSet languageResult = stmt.executeQuery();
+			
+			if (languageResult.next()) {
+
+				int id = languageResult.getInt("id");
+				languageName = languageResult.getString("name");
+			}
+
+//			film.setActors(language);
+
+			languageResult.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return languageName;
+	}
+	
+	
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {

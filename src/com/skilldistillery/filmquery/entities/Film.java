@@ -19,6 +19,7 @@ public class Film {
 	private String description;
 	private Integer releaseYear;
 	private int languageId;
+	private String languageName;
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
@@ -27,15 +28,19 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> actors;
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
-			List<Actor> actors) {
+	
+	
+
+	public Film(int id, String title, String description, Integer releaseYear, int languageId, String languageName,
+			int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
+			String specialFeatures, List<Actor> actors) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.languageId = languageId;
+		this.languageName = languageName;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
@@ -43,22 +48,6 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 		this.actors = actors;
-	}
-
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.releaseYear = releaseYear;
-		this.languageId = languageId;
-		this.rentalDuration = rentalDuration;
-		this.rentalRate = rentalRate;
-		this.length = length;
-		this.replacementCost = replacementCost;
-		this.rating = rating;
-		this.specialFeatures = specialFeatures;
 	}
 
 	public Film() {
@@ -102,6 +91,16 @@ public class Film {
 
 	public void setLanguageId(int languageId) {
 		this.languageId = languageId;
+	}
+	
+	
+
+	public String getLanguageName() {
+		return languageName;
+	}
+
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
 
 	public int getRentalDuration() {
@@ -196,7 +195,7 @@ public class Film {
 	
 	// // title, year, rating, and description 
 	public String getSimple() {
-		return title + ", " + description + ", " + releaseYear + ", " + rating + "\n Actors: " + actors;
+		return title + ", " + description + ", " + releaseYear + ", " + rating + "\n Actors: " + actors + "\n Language: " + languageName;
 	}
 	
 	

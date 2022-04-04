@@ -84,7 +84,7 @@ public class FilmQueryApp {
 					break;
 				case 2:
 					try {
-						System.out.println("Enter a search keyword (eg. bama) TODO ");
+						System.out.println("Enter a search keyword (eg. man, word, etc.).");
 						input.nextLine(); // flush
 						List<Film> films;
 						films = db.findFilmByKeyword(input.nextLine());
